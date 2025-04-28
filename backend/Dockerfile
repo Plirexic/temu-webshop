@@ -1,5 +1,5 @@
 # ===== Stage 1: Build =====
-FROM node:18-alpine AS builder
+FROM node:current-alpine AS builder
 WORKDIR /app
 
 # package.json & lockfile kopieren und ALLE Deps installieren
@@ -11,7 +11,7 @@ COPY . .
 RUN npm run build      # hier liegt nest + ts im node_modules/.bin
 
 # ===== Stage 2: Production Image =====
-FROM node:18-alpine
+FROM node:current-alpine
 WORKDIR /app
 
 # Nur production-Deps, damit das Image klein bleibt

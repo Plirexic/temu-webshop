@@ -1,5 +1,5 @@
 # 1. Basis-Image
-FROM node:18-alpine
+FROM node:current-alpine
 
 # 2. Arbeitsverzeichnis
 WORKDIR /app

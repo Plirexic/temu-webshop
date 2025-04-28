@@ -1,12 +1,12 @@
-// frontend/hooks/useItems.ts
 import useSWR, { mutate } from 'swr'
 import { getAllItems, createOrUpdateItem, updateItem, deleteItem } from '../lib/itemsApi'
 import { Item } from '../models/item'
 import { CreateItemDto, UpdateItemDto } from '../models/dto'
 
-
-export function useItems() {
-  const { data, error } = useSWR<Item[]>('items', () => getAllItems())
+export function useItems(initialItems?: Item[]) {
+  const { data, error } = useSWR<Item[]>('items', () => getAllItems(), {
+    fallbackData: initialItems,  // pre-fill the data on the first render
+  })
   return {
     items: data,
     isLoading: !error && !data,
@@ -16,7 +16,6 @@ export function useItems() {
 
 export async function addItem(dto: CreateItemDto) {
   const newItem = await createOrUpdateItem(dto)
-  // revalidate die Liste
   mutate('items')
   return newItem
 }

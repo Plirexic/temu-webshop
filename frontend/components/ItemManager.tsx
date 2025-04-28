@@ -1,12 +1,15 @@
-// frontend/components/ItemManager.tsx
 'use client'
 
 import { useState } from 'react'
 import { useItems, addItem, editItem, removeItem } from '../hooks/useItems'
 import { Item } from '../models/item'
 
-export function ItemManager() {
-  const { items, isLoading, isError } = useItems()
+interface ItemManagerProps {
+  initialItems: Item[]
+}
+
+export function ItemManager({ initialItems }: ItemManagerProps) {
+  const { items, isLoading, isError } = useItems(initialItems)
   const [name, setName] = useState('')
   const [qty, setQty] = useState(0)
 
