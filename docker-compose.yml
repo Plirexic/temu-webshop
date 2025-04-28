@@ -12,6 +12,11 @@ services:
       - '5433:5432'
     networks:
       - temu-webshop-network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "user"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
 
   backend:
     build:
