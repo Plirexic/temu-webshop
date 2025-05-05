@@ -1,5 +1,5 @@
 // lib/apiClient.ts
-const BASE = process.env.NEXT_PUBLIC_API_BASE_URL!
+const BASE = process.env.NEXT_PUBLIC_API_URL!
 
 export async function fetcher<T>(path: string, opts?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {
