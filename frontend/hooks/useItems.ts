@@ -5,7 +5,7 @@ import { CreateItemDto, UpdateItemDto } from '../models/dto'
 
 export function useItems(initialItems?: Item[]) {
   const { data, error } = useSWR<Item[]>('items', () => getAllItems(), {
-    fallbackData: initialItems,  // pre-fill the data on the first render
+    fallbackData: initialItems,
   })
   return {
     items: data,
